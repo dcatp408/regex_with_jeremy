@@ -1,0 +1,5 @@
+----> NEW FEATURES <-------
+1. Add validations
+    1.1. For deletion of expressions
+    1.2. Add guest feature for login/reg
+2. Add examples/tutorial
