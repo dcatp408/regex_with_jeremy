@@ -1,0 +1,13 @@
+body{
+    background-image: url(https://videohive.img.customer.envatousercontent.com/files/227714272/Binary%20Code%20Background%20%2001_preview1.JPG?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=4ac645f9f3c974f81fa45c4e85ebcaf1);
+}
+
+#image1{
+    width: auto;
+    height: auto;
+}
+
+#box2{
+    overflow: auto;
+    height: 380px;
+}

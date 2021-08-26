@@ -16,26 +16,32 @@
         <nav class="box1 d-flex text-warning bg-dark justify-content-between">
             <h1 class="p-2">Welcome: {{user.username}}!</h1>
             <form class="px-2 " action="/delete_session">
-                <input class="btn btn-secondary pt-2 mt-2 ms-5" type="submit" value="Logout">
+                <input class="btn btn-secondary pt-2 mt-2 ms-5 text-warning" type="submit" value="Logout">
             </form>
         </nav>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="bg-danger text-center text-white">{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
         <div class="row">
-            <div class="col">
-                <div class="box border border-dark mt-4 mb-3 w-75 p-5 text-warning bg-dark">
+            <div class="col-4">
+                <div class="box border border-dark mt-4 mb-3 p-5 text-warning bg-dark">
                     <form action="/match" method="POST">
-                        <h3>Regular Expression</h3>
+                        <h3>Regular Expression:</h3>
                         <input type="text" name="regular_expression" value="{{session['regular_expression']}}">
-                        <h3>Test String</h3>
+                        <h3>Test String:</h3>
                         <input type="text" name="test_string" value="{{session['test_string']}}">
                         <h3></h3>
-                        <input type="submit" value="Match String!">
+                        <input class="btn btn-secondary text-warning" type="submit" value="Match String!">
                     </form>
                     <form class="pt-2" action="/clear/text" method="POST">
-                        <input type="submit" value="Clear Text">
+                        <input class="btn btn-secondary text-warning" type="submit" value="Clear Text">
                     </form>
                     <form class="pt-2" action="/save" method="POST">
-                        <input type="submit" value="Save">
+                        <input class="btn btn-secondary text-warning" type="submit" value="Save">
                     </form>
                     {% if session["valid"] == False %}
                     <span class="text-danger">{{session["valid"]}}</span>
@@ -44,18 +50,54 @@
                     <span class="text-success">{{session["valid"]}}</span>
                     {% endif %}
                 </div>
+                <div class="box border border-dark mt-4 mb-3 p-5 w-80 text-warning bg-dark" id="box2">
+                    <table>
+                        <tr>
+                            <th>Regular Expression</th>
+                            <th>Test String</th>
+                            <th>Action</th>
+                        </tr>
+                        {% if expressions == None %}
+                        {% else %}
+                        {% for expression in expressions  %}
+                        <tr>
+                            <td>
+
+                                <p>{{expression.regular_expression}} </p>
+                            </td>
+                            <td>
+                                <p>{{expression.test_string}}</p>
+
+                            </td>
+                            <td>
+                                <a href="delete/expression/{{expression.id}}">Delete</a>
+                                <a href="copy/expression/{{expression.id}}">Copy</a>
+
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </table>
+
+                </div>
+
+
             </div>
             <div class="col">
-                <div class="box border border-dark mt-4 mb-3 w-75 p-5 text-warning bg-dark">
-                    {% for expression in expressions  %}
-                    {{expression.regular_expression}}
-                    {{expression.test_string}}
-                    {{expression.user_id}}
-                    <a href="delete/expression/{{expression.id}}">Delete Expression</a>
-                    {% endfor %}
+                <div>
+                    <h1 class="text-warning">Regex cheatsheet</h1>
+                    <img class="" id="image1" src="https://miro.medium.com/max/676/1*BmpF9a9q35zi-VTf5-Arzg.jpeg"
+                        alt="regex cheatsheet">
                 </div>
             </div>
+
         </div>
+        <div class="col">
+
+        </div>
+    </div>
+    </div>
     </div>
 
     </div>

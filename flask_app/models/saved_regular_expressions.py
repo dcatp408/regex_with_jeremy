@@ -1,5 +1,4 @@
 import flask_app
-from flask_app.models.user import User
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import app, flash
 
@@ -20,6 +19,18 @@ class Expression:
         return connectToMySQL(DATABASE).query_db(query, data)
 
     @classmethod
+    def get_one(cls, id):
+        query = "SELECT * FROM saved_regular_expressions WHERE id = %(user_id)s;"
+        data = {
+            'user_id': id
+        }
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        users = []
+        for user in results:
+            users.append(cls(user))
+        return users[0]
+
+    @classmethod
     def get_all(cls):
         query = "SELECT * FROM saved_regular_expressions;"
         results = connectToMySQL(DATABASE).query_db(query)
@@ -29,6 +40,32 @@ class Expression:
         return expressions
 
     @classmethod
+    def get_all_expressions_for_one_user(cls, id):
+        query = "SELECT * FROM saved_regular_expressions where user_id = %(user_id)s"
+        data = {
+            'user_id': id
+        }
+        results = connectToMySQL(DATABASE).query_db(query, data)
+
+        expressions = []
+        for expression in results:
+            expressions.append(cls(expression))
+        return expressions
+
+    @classmethod
     def delete(cls, data):
         query = "delete from saved_regular_expressions where id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)
+
+    @staticmethod
+    def save_expression_validation(data):
+        is_valid = True
+        print("*"*80)
+        print("*"*80)
+        if len(data["regular_expression"]) == 0:
+            flash("Expression is a required to save")
+            is_valid = False
+        if len(data["test_string"]) == 0:
+            flash("Test String is a required to save")
+            is_valid = False
+        return is_valid

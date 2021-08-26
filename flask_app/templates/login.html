@@ -13,39 +13,46 @@
 
 </head>
 
-<body class="p-3 mb-2 bg-secondary text-white">
-    <div class="container border mt-5 w-75 p-5 text-warning bg-dark">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <p class="bg-danger text-center text-white">{{message}}</p>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <div class="row">
-            <div class="col">
-                <h1>Register:</h1>
-                <form action="/register_user" method="post">
-                    <h3>Username:</h3>
-                    <h3><input type="text" name="username"></h3>
-                    <h3>Password:</h3>
-                    <h3><input type="text" name="password"></h3>
-                    <h3>Confirm Password:</h3>
-                    <h3><input type="text" name="confirmpassword"></h3>
-                    <h3><input type="submit" class="btn btn-secondary" value="Register"></h3>
-                </form>
-            </div>
-            <div class="col">
-                <h1>Log In:</h1>
-                <form action="/login_user" method="POST">
-                    <h3>Username:</h3>
-                    <h3><input type="text" name="username"></h3>
-                    <h3>Password:</h3>
-                    <h3><input type="text" name="password"></h3>
-                    <h3><input type="submit" class="btn btn-secondary" value="Login"></h3>
-                </form>
+<body>
+    <div class="has-bg-img">
+        <div class="container border mt-5 w-75 p-5 text-warning bg-dark">
+            <h1 class="d-flex justify-content-center"> Regex Validator</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class=" bg-danger text-center text-white">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="row">
+                <div class="col">
+                    <h1>Register:</h1>
+                    <form action="/register_user" method="post">
+                        <h3>Username:</h3>
+                        <h3><input type="text" name="username"></h3>
+                        <h3>Password:</h3>
+                        <h3><input type="password" name="password"></h3>
+                        <h3>Confirm Password:</h3>
+                        <h3><input type="password" name="confirmpassword"></h3>
+                        <h3><input type="submit" class="btn btn-secondary" value="Register"></h3>
+                    </form>
+                </div>
+                <div class="col">
+                    <h1>Log In:</h1>
+                    <form action="/login_user" method="POST">
+                        <h3>Username:</h3>
+                        <h3><input type="text" name="username"></h3>
+                        <h3>Password:</h3>
+                        <h3><input type="password" name="password"></h3>
+                        <h3><input type="submit" class="btn btn-secondary" value="Login"></h3>
+                    </form>
+                    <a href="/guest/dashboard">Continue As Guest</a>
+                </div>
             </div>
         </div>
+        <img class="bg-img"
+            src="https://videohive.img.customer.envatousercontent.com/files/227714272/Binary%20Code%20Background%20%2001_preview1.JPG?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=4ac645f9f3c974f81fa45c4e85ebcaf1"
+            alt="code">
     </div>
 </body>
 

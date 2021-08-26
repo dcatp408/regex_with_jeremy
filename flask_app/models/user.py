@@ -1,7 +1,7 @@
 import flask_app
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import app, flash
-
+from flask_app.models.saved_regular_expressions import Expression
 
 DATABASE = 'regex_database'
 
@@ -11,6 +11,7 @@ class User:
         self.username = data['username']
         self.password = data['password']
         self.id = data["id"]
+        self.saved_regular_expressions = []
 
     @classmethod
     def get_all(cls):
@@ -81,34 +82,3 @@ class User:
             flash("Passwords don't match")
             is_valid = False
         return is_valid
-
-    # @staticmethod
-    # def update_validate(data):
-    #     is_valid = True
-    #     if len(data["first_name"]) == 0:
-    #         flash("First Name is a required field")
-    #         is_valid = False
-    #     elif len(data["first_name"]) < 2:
-    #         flash("First Name must have more than 2 characters")
-    #         is_valid = False
-    #     elif data["first_name"].isalpha() == False:
-    #         flash("First Name must be alphabetical")
-    #         is_valid = False
-
-    #     if len(data["last_name"]) == 0:
-    #         flash("Last Name is a required field")
-    #         is_valid = False
-    #     elif len(data["last_name"]) < 2:
-    #         flash("Last Name must have more than 2 characters")
-    #         is_valid = False
-    #     elif data["last_name"].isalpha() == False:
-    #         flash("Last Name must be alphabetical")
-    #         is_valid = False
-
-    #     if len(data["email"]) == 0:
-    #         flash("Email is a required field")
-    #         is_valid = False
-    #     elif not EMAIL_REGEX.match(data['email']):
-    #         flash("Invalid email address")
-    #         is_valid = False
-    #     return is_valid
