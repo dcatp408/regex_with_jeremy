@@ -63,9 +63,9 @@ class Expression:
         print("*"*80)
         print("*"*80)
         if len(data["regular_expression"]) == 0:
-            flash("Expression is a required to save")
+            flash("Expression is required to save", "regular_expression")
             is_valid = False
         if len(data["test_string"]) == 0:
-            flash("Test String is a required to save")
+            flash("Test String is required to save", "test_string")
             is_valid = False
         return is_valid

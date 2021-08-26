@@ -20,10 +20,10 @@ def login_user():
     data = {"username": request.form["username"]}
     user_in_db = User.get_by_username(data)
     if not user_in_db:
-        flash("Account doesn't exist")
+        flash("Account doesn't exist", "login")
         return redirect("/")
     if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
-        flash("Account doesn't exist")
+        flash("Account doesn't exist", "login")
         return redirect("/")
     session['user_id'] = user_in_db.id
     return redirect("/dashboard")

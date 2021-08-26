@@ -14,50 +14,52 @@
 <body>
 
     <body class="bg-warning">
-        <div class="container bg-secondary text-white mt-5 pt-3 pb-2">
+        <div class="container bg-secondary text-white pt-3 mt-4 mb-4 pb-5">
             <nav class="box1 d-flex text-warning bg-dark justify-content-between">
                 <h1 class="p-2">Welcome: Guest!!</h1>
                 <a class="btn btn-secondary m-3" href="/">Sign Up!</a>
             </nav>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-            <p class="bg-danger text-center text-white">{{message}}</p>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
             <div class="row">
-                <div class="col">
-                    <div class="box border border-dark mt-4 mb-3 w-80 p-5 text-warning bg-dark">
+                <div class="col-4">
+                    <div class="box border border-dark mt-4 mb-3 p-5 text-warning bg-dark">
                         <form action="/match" method="POST">
-                            <h3>Regular Expression</h3>
+
+                            <h3>Regular Expression:</h3>
+
+
+
                             <input type="text" name="regular_expression" value="{{session['regular_expression']}}">
-                            <h3>Test String</h3>
+
+                            <h3>Test String:</h3>
+
                             <input type="text" name="test_string" value="{{session['test_string']}}">
-                            <h3></h3>
-                            <input class="btn btn-secondary text-warning" type="submit" value="Match String!">
+
+                            {% if session["valid"] == False %}
+                            <span class="text-danger fs-3 px-3">{{session["valid"]}}</span>
+                            {% endif %}
+                            {% if session["valid"] == True %}
+                            <span class="text-success fs-3 px-3">{{session["valid"]}}</span>
+                            {% endif %}
+
+
+                            <div class="d-flex justify-content-between w-75 mt-3">
+
+                                <input class="btn btn-secondary text-warning" type="submit" value="Match String!">
                         </form>
                         <form class="pt-2" action="/clear/text" method="POST">
                             <input class="btn btn-secondary text-warning" type="submit" value="Clear Text">
                         </form>
-                        {% if session["valid"] == False %}
-                        <span class="text-danger">{{session["valid"]}}</span>
-                        {% endif %}
-                        {% if session["valid"] == True %}
-                        <span class="text-success">{{session["valid"]}}</span>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col">
-                    <div>
-                        <h1 class="text-warning">Regex cheatsheet</h1>
-                        <img class="" id="image1" src="https://miro.medium.com/max/676/1*BmpF9a9q35zi-VTf5-Arzg.jpeg"
-                            alt="regex cheatsheet">
                     </div>
                 </div>
             </div>
+            <div class="col-4 mt-4">
+                <div class="cheat">
+                    <h1 class="fs-2 text-warning">Regex Cheatsheet</h1>
+                    <img class="" id="image1" src="https://miro.medium.com/max/676/1*BmpF9a9q35zi-VTf5-Arzg.jpeg"
+                        alt="regex cheatsheet">
+                </div>
+            </div>
         </div>
-
         </div>
     </body>
 
