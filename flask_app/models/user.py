@@ -69,7 +69,7 @@ class User:
         else:
             username = User.get_by_username(data)
             if username != False:
-                flash("Invalid Username")
+                flash("Invalid Username", "username")
                 is_valid = False
 
         if len(data["password"]) == 0:
